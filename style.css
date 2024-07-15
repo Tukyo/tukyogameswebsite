@@ -1,0 +1,221 @@
+/* #region Root Element Styles */
+:root {
+    --tukyogames-main: gray;
+    --tukyogames-dark: #86595e;
+    --tukyogames-bright: #bde6ff;
+}
+
+/* #region Scrollbar */
+::-webkit-scrollbar {
+    background: black;
+    width: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--tukyogames-main);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--tukyogames-dark);
+}
+
+/* #endregion Scrollbar */
+
+body {
+    background-color: black;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+}
+h2 {
+    color: var(--tukyogames-main);
+    font-size: 100px;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0px;
+    font-family: "VT323", monospace;
+}
+h2:hover,
+h2 span:hover {
+    animation: gradientShift 3s infinite ease-in-out;
+    background-clip: text;
+    color: transparent;
+    background-size: 200% 200%;
+    background-image: linear-gradient(45deg, #ff0099, #493240, #f3f315, #ff0099);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: grab;
+}
+h2 span {
+    cursor: grab;
+}
+h3 {
+    font-family: "Rubik Mono One", monospace;
+    font-size: 24px;
+    color: var(--tukyogames-bright);
+}
+p {
+    font-family: "Rubik Mono One", monospace;
+    font-size: 16px;
+    color: var(--tukyogames-main)
+}
+/* #endregion Root Element Styles */
+
+/* #region Custom Styles */
+.logo img {
+    max-width: 50vw;
+    max-height: 20vh;
+    display: block;
+    margin: 0 auto;
+    z-index: 1;
+}
+.container {
+    background-color: rgba(0, 0, 0, 0.500);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto;
+    z-index: 2;
+}
+.game {
+    position: relative;
+    width: 99%;
+    height: 500px;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+    z-index: 3;
+    overflow: hidden;
+    border-radius: 50px;
+}
+.game-preview,
+.game-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.5s ease;
+    filter: blur(5px);
+}
+.game-overlay {
+    z-index: 4;
+    opacity: 1;
+}
+.game-preview {
+    transform: scale(1);
+}
+.game-description {
+    position: absolute;
+    top: 35%;
+    left: 0;
+    width: 100%;
+    height: 25%;
+    background-color: black;
+    z-index: 5;
+}
+.game:hover .game-overlay {
+    opacity: 0;
+    cursor: pointer;
+}
+.game:hover .game-preview {
+    transform: scale(1.05);
+    filter: blur(0px);
+}
+.game:hover .game-description {
+    display: none;
+}
+#rain {
+    background: none;
+    position: absolute;
+    mix-blend-mode: screen;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 0;
+    opacity: 50%;
+}
+.footer {
+    position: fixed;
+    background-color: #000000e6;
+    height: 40px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+    text-align: center;
+    font-size: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+/* #region Social Media */
+.social-icon {
+    margin: 0 10px; /* Spacing between icons */
+    color: var(--tukyogames-bright);
+    font-size: 32px;
+
+}
+.social-icon:hover {
+    color: #dddddd;
+    text-shadow: 0 0 10px var(--tukyogames-dark), 0 0 10px var(--tukyogames-bright);
+}
+/* #endregion Social Media */
+
+/* #endregion Custom Styles */
+
+/*#region Responsive Design */
+@media (max-width: 880px) {
+    h2 {
+        font-size: 75px;
+    }
+    h3 {
+        font-size: 16px;
+    }
+    p {
+        font-size: 12px;
+    }
+    .game-description {
+        height: 20%;
+    }
+}
+/*#endregion Responsive Design */
+
+/* #region Fonts */
+.vt323-regular {
+    font-family: "VT323", monospace;
+    font-weight: 400;
+    font-style: normal;
+}
+.rubik-mono-one-regular {
+    font-family: "Rubik Mono One", monospace;
+    font-weight: 400;
+    font-style: normal;
+}
+/* #endregion Fonts */
+
+/* #region Animations */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+/* #endregion Animations */
