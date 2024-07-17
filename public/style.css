@@ -1,6 +1,6 @@
 /* #region Root Element Styles */
 :root {
-    --tukyogames-main: gray;
+    --tukyogames-main: rgb(193, 193, 193);
     --tukyogames-dark: #86595e;
     --tukyogames-bright: #bde6ff;
 }
@@ -24,7 +24,6 @@
 
 body {
     background-color: black;
-    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,11 +34,14 @@ h2 {
     font-size: 100px;
     text-align: center;
     text-transform: uppercase;
+    text-shadow: 0 0 10px var(--tukyogames-dark), 0 0 10px var(--tukyogames-bright);
+    outline: black;
     margin: 0px;
     font-family: "VT323", monospace;
 }
 h2:hover,
 h2 span:hover {
+    text-shadow: none;
     animation: gradientShift 3s infinite ease-in-out;
     background-clip: text;
     color: transparent;
@@ -65,25 +67,41 @@ p {
 /* #endregion Root Element Styles */
 
 /* #region Custom Styles */
+.logo {
+    z-index: 10;
+    pointer-events: none;
+}
 .logo img {
     max-width: 50vw;
     max-height: 20vh;
     display: block;
     margin: 0 auto;
-    z-index: 1;
 }
 .container {
-    background-color: rgba(0, 0, 0, 0.500);
-    width: 100%;
+    background-color: rgba(26, 26, 26, 0.656);
+    width: 110%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 20px auto;
+    margin: 20px;
     z-index: 2;
+    /* Define the size of the grid */
+    --grid-size: 64px;
+
+    /* Create vertical lines */
+    background-image: 
+        linear-gradient(to right, black 1px, transparent 1px),
+        linear-gradient(to bottom, black 1px, transparent 1px);
+
+    /* Set the size of the grid lines and the space between them */
+    background-size: var(--grid-size) var(--grid-size);
+
+    /* Position the grid lines */
+    background-position: center center;
 }
 .game {
     position: relative;
-    width: 99%;
+    width: 110%;
     height: 500px;
     display: inline-block;
     justify-content: center;
@@ -142,6 +160,16 @@ p {
     width: 100vw;
     z-index: 0;
     opacity: 50%;
+}
+#backgroundcanvas {
+    background: none;
+    position: absolute;
+    opacity: 50%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
 }
 .footer {
     position: fixed;
@@ -219,3 +247,19 @@ p {
     }
 }
 /* #endregion Animations */
+
+
+.ball {
+    position: absolute;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    z-index: 50;
+}
+
+.trail {
+    position: absolute;
+    border-radius: 20%;
+    opacity: 0.3;
+    z-index: 49;
+}
