@@ -1,37 +1,20 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const draggableElements = document.querySelectorAll("h2");
+document.addEventListener("DOMContentLoaded", function () {
+    const emailSpan = document.getElementById("email");
 
-    draggableElements.forEach(element => {
-        element.addEventListener("mousedown", mouseDownHandler);
-    });
+    console.log(emailSpan.textContent);
 
-    function mouseDownHandler(event) {
-        const element = event.target;
-        element.style.position = 'absolute';
-        element.style.zIndex = 1000;
-
-        function moveAt(pageX, pageY) {
-            element.style.left = pageX - element.offsetWidth / 2 + 'px';
-            element.style.top = pageY - element.offsetHeight / 2 + 'px';
-        }
-
-        moveAt(event.pageX, event.pageY);
-
-        function onMouseMove(event) {
-            moveAt(event.pageX, event.pageY);
-        }
-
-        document.addEventListener("mousemove", onMouseMove);
-
-        element.onmouseup = function() {
-            document.removeEventListener("mousemove", onMouseMove);
-            element.onmouseup = null;
-        };
-    }
-
-    draggableElements.forEach(element => {
-        element.ondragstart = function() {
-            return false;
-        };
+    emailSpan.addEventListener("click", function () {
+        const email = "tko@tukyowave.com";
+        navigator.clipboard.writeText(email).then(() => {
+            console.log("Email copied to clipboard!");
+            // Change font color to indicate copy success
+            emailSpan.style.color = "lime";
+            // Return font color to normal after 3 seconds
+            setTimeout(() => {
+                emailSpan.style.color = "#f3f315";
+            }, 1000);
+        }).catch(err => {
+            console.error("Failed to copy email to clipboard", err);
+        });
     });
 });
